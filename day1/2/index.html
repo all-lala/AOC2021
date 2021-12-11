@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <pre id="reponse"></pre>
+  </body>
+</html>
+<script type="module">
+  import data from "./data.js";
+
+  function print(txt) {
+    document.getElementById("reponse").innerHTML = txt;
+  }
+
+  function createThreeMesurementSlidingWindow(data) {
+    const tmsw = data
+      .map((d, i) => {
+        if (data[i + 2] !== undefined) {
+          return d + data[i + 1] + data[i + 2];
+        }
+        return undefined;
+      })
+      .filter((d) => d !== undefined);
+    return tmsw;
+  }
+
+  function deepMesurement(data) {
+    let total = 0;
+    for (let i in data) {
+      if (i != 0) {
+        if (data[i - 1] < data[i]) {
+          total++;
+        }
+      }
+    }
+    return total;
+  }
+
+  print(deepMesurement(createThreeMesurementSlidingWindow(data)));
+</script>
