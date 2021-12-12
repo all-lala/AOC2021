@@ -1,4 +1,4 @@
-import data from "./dataTest.js";
+import data from "./data.js";
 
 function print(txt) {
   document.getElementById("reponse").innerHTML = txt;
